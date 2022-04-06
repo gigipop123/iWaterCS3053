@@ -1,0 +1,123 @@
+import Foundation;
+
+class Water
+{
+    // Space to set Water object to Nickname - Personalizing?
+    private var name : String = "Water";
+    private var hydrationGoal : Double;     
+    private var addBev : Double;		  
+    private var totalBev : Double;	
+
+
+    // * Constructor #1 - Name
+    init(_ name : String)
+    {
+        self.name = name;
+    }
+
+    // * Constructor #2 - AddBev
+    init(_ name : String, _ addBev : Double)
+    {
+        self.addBev = addBev;
+        self.name = name;
+    }
+
+    // * Super Constructor #3 - AddBev + HydrationGoal
+    init(_ name : String, _ addBev : Double, _ hydrationGoal : Double)
+    {
+        self.hydrationGoal = hydrationGoal;
+        self.addBev = addBev;
+        self.name = name;
+    }
+
+
+
+    // * Getter / Setter
+    // Call wherever Water is - gets Water or gets Name
+    func getName() -> String?
+    {
+        return self.name;
+    }
+    func getHydrationGoal() -> Double
+    {
+        return self.hydrationGoal;
+    }
+    func getAddBev() -> Double
+    {
+        return self.addBev;
+    }
+    func getTotalBev() -> Double
+    {
+        return self.totalBev;
+    }
+
+
+
+    func setName(_ name : String)
+    {
+        self.name = name;
+    }
+    func setHydrationGoal(_ hydrationGoal : Double)
+    {
+        self.hydrationGoal = hydrationGoal;
+    }
+    func setAddBev(_ addBev : Double)
+    {
+        self.addBev = addBev;
+    }
+    func setTotalBev(_ totalBev : Double)
+    {
+        self.totalBev = totalBev;
+    }
+
+
+
+	// * Adds new beverage value to the beverage total
+    func addBevVal(_ addBev : Double) -> Double
+    {
+        return self.totalBev = self.totalBev + addBev;
+    }
+
+
+
+    func suggestion() -> String?
+    {
+        var recommendation : Double = 0;
+        if (self.getHydrationGoal() == 0)
+        {
+            recommendation = 2;
+        }
+        return "You don\'t have a goal: perhaps you should try drinking " + String(recommendation) + " liters per day";
+    }
+
+
+
+    func toString() -> String?
+    {
+        if (self.getHydrationGoal() != 0)
+        {
+            return "My " + self.getName() + " water consumption is " + String(self.getTotalBev()) + " liters and my goal is " + String(self.getHydrationGoal());
+        }
+         else
+        {
+            return "My " + self.getName() + " water consumption is " + String(self.getTotalBev()) + " liters!";
+        }
+    }
+
+
+    static func main(_ args : inout [String])
+    {
+        let wet : Water? = Water("Gym");
+        let tooWetTooFurious : Water? = Water("Coffee Balancing", 3.5);
+        let wetTokyoDrift : Water? = Water("Steve", 8.2, 15);
+
+
+        print(wet!.toString());
+        print(wet!.suggestion());
+        print(tooWetTooFurious!.toString());
+        print(wetTokyoDrift!.toString());
+    }
+}
+
+var record : [String] = CommandLine.arguments;
+Water.main(&record);
